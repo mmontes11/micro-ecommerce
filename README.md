@@ -1,2 +1,2 @@
 # microfrontends-poc
-Basic architecture based of microfrontends
+Basic architecture based on microfrontends
