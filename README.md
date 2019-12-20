@@ -1,2 +1,2 @@
-# microfrontends-poc
-Basic architecture based on microfrontends
+# micro-ecommerce
+Ecommerce platform based on microservices and microfrontends architecture
