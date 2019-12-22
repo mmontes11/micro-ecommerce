@@ -9,7 +9,8 @@
     "clean:app": "rm public/bundle.js",
     "clean:server": "rm -rf build",
     "lint": "eslint . --fix",
-    "start": "cross-env NODE_ENV=development nodemon build/bundle.js"
+    "start": "npm-run-all --parallel build start:dev",
+    "start:dev": "cross-env NODE_ENV=development nodemon build/bundle.js"
   },
   "dependencies": {
     "express": "^4.17.1",
