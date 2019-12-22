@@ -3,7 +3,7 @@ import fs from "fs";
 import express from "express";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
-import ContainerApp from "../app/App";
+import ContainerApp from "../app/components/App";
 
 const PORT = process.env.ME_FRONT_PORT || 8080;
 const app = express();
