@@ -1,18 +1,25 @@
 import React from "react";
 import { Container, Menu, Icon } from "semantic-ui-react";
+import { NavLink, Link } from "react-router-dom";
 
 const { Item } = Menu;
 
-const Navbar = () => (
+const Navbar = ({ location }) => (
   <Menu attached="top" borderless>
     <Container>
-      <Item as="a" href="/" header>
+      <Item as={Link} to="/" header>
         <Icon name="cubes" size="big" />
         Micro Ecommerce
       </Item>
-      <Item as="a">Woman</Item>
-      <Item as="a">Man</Item>
-      <Item as="a">Kids</Item>
+      <Item as={NavLink} to="/woman">
+        Woman
+      </Item>
+      <Item as={NavLink} to="/man">
+        Man
+      </Item>
+      <Item as={NavLink} to="/kids">
+        Kids
+      </Item>
     </Container>
   </Menu>
 );

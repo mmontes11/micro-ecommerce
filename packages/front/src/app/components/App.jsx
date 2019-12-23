@@ -9,18 +9,13 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Content = styled(Container)`
-  margin-top: 3em;
-  margin-bottom: 3em;
-`;
-
 const App = () => (
   <>
     <GlobalStyle />
     <Navbar />
-    <Content>
-      <p>Hello world!</p>
-    </Content>
+    <Container>
+      <div id="content"></div>
+    </Container>
   </>
 );
 
