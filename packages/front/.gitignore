@@ -40,5 +40,6 @@ coverage
 !.env.example
 
 # generated
-public/bundle.js
+**/bundle.*
+bundle.*
 build/

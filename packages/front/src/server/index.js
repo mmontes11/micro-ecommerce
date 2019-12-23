@@ -10,7 +10,7 @@ const app = express();
 
 app.use(express.static("./public"));
 
-app.get("/*", (req, res) => {
+app.get("*", (req, res) => {
   const containerHtml = ReactDOMServer.renderToString(<ContainerApp />);
   const index = path.resolve("./public/index.html");
   fs.readFile(index, "utf8", (err, data) => {
@@ -23,5 +23,5 @@ app.get("/*", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+  console.log(`Server listening on port ${PORT}`);
 });

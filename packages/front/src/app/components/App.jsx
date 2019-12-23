@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Container } from "semantic-ui-react";
-import Navbar from "./Navbar";
+import Navbar from "components/Navbar";
 
 const GlobalStyle = createGlobalStyle`
   body {
