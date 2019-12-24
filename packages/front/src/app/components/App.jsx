@@ -2,6 +2,8 @@ import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Container } from "semantic-ui-react";
 import Navbar from "components/Navbar";
+import { usePreloadedState } from "context/preloadedState";
+import ReactHtmlParser from "react-html-parser";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -9,14 +11,20 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const App = () => (
-  <>
-    <GlobalStyle />
-    <Navbar />
-    <Container>
-      <div id="content"></div>
-    </Container>
-  </>
-);
+const Content = styled(Container)`
+  margin-top: 3em;
+  martin-bottom: 3em;
+`;
+
+const App = () => {
+  const { content } = usePreloadedState();
+  return (
+    <>
+      <GlobalStyle />
+      <Navbar />
+      {content && <Content>{ReactHtmlParser(content)}</Content>}
+    </>
+  );
+};
 
 export default App;
