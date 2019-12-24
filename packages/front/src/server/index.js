@@ -9,18 +9,15 @@ app.use(express.static("public"));
 
 app.get("*", (req, res) => {
   const matchedRoute = matchRoute(req.url);
-  let state = {};
+  let content;
   if (matchedRoute) {
-    const { redirect, content } = matchedRoute;
+    const { redirect, content: routeContent } = matchedRoute;
     if (redirect) {
       return res.redirect(redirect);
     }
-    state = {
-      ...state,
-      content,
-    };
+    content = routeContent;
   }
-  const html = render(req, state);
+  const html = render(req, content);
   return res.send(html);
 });
 

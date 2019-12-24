@@ -13,8 +13,9 @@
   "keywords": [
     "microservices",
     "microfrontends",
-    "architecture",
-    "ecommerce"
+    "ssr",
+    "node",
+    "react"
   ],
   "author": "mmontes11",
   "license": "MIT",

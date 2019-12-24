@@ -4,7 +4,7 @@ import { NavLink, Link } from "react-router-dom";
 
 const { Item } = Menu;
 
-const Navbar = ({ location }) => (
+const Navbar = () => (
   <Menu attached="top" borderless>
     <Container>
       <Item as={Link} to="/" header>
