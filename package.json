@@ -1,10 +1,22 @@
 {
   "name": "micro-ecommerce",
+  "author": "mmontes11",
+  "license": "MIT",
   "version": "1.0.0",
-  "description": "Ecommerce platform based on microservices and microfrontends architecture",
-  "main": "index.js",
+  "description": "Ecommerce platform based on microservices and microfrontends",
+  "devDependencies": {
+    "lerna": "^3.19.0",
+    "npm-run-all": "^4.1.5"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "lerna bootstrap",
+    "start": "npm-run-all --parallel start:*",
+    "start:front": "cd packages/front && npm start",
+    "start:front-catalog": "cd packages/front-catalog && npm start",
+    "lint": "lerna run lint",
+    "clean": "lerna run clean",
+    "build:dev": "lerna run build",
+    "build:pro": "lerna run build:pro"
   },
   "repository": {
     "type": "git",
@@ -16,14 +28,5 @@
     "ssr",
     "node",
     "react"
-  ],
-  "author": "mmontes11",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mmontes11/micro-ecommerce/issues"
-  },
-  "homepage": "https://github.com/mmontes11/micro-ecommerce#readme",
-  "devDependencies": {
-    "lerna": "^3.19.0"
-  }
+  ]
 }
