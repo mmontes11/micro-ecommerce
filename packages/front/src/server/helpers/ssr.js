@@ -21,7 +21,7 @@ export const render = (req, content) => {
       </head>
       <body>
         <div id="root">${navbar}</div>
-        ${content}
+        <div id="content">${content}</div>
         <script src="/bundle.js"></script>
       </body>
     </html>
