@@ -1,3 +1,6 @@
+const webpack = require("webpack");
+const config = require("common/config");
+
 module.exports = {
   module: {
     rules: [
@@ -15,4 +18,9 @@ module.exports = {
     extensions: [".js", ".jsx"],
     modules: ["./src/app", "./src/server", "node_modules"],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env": config,
+    }),
+  ],
 };

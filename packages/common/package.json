@@ -1,0 +1,7 @@
+{
+  "name": "common",
+  "version": "0.1.0",
+  "dependencies": {
+    "dotenv": "^8.1.0"
+  }
+}
