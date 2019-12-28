@@ -1,35 +1,25 @@
 import "@babel/polyfill";
 import "isomorphic-fetch";
-import express from "express";
-import httpStatus from "http-status";
-import { matchRoute } from "http/routes";
-import { getHtmlContent } from "http/request";
-import { render } from "helpers/ssr";
+import { Server } from "http";
+import app from "app";
+import logger from "helpers/log";
 
 const PORT = process.env.FRONT_PORT;
-const app = express();
+const server = new Server(app);
 
-app.use(express.static("public"));
-
-app.get("*", async (req, res) => {
-  const matchedRoute = matchRoute(req.url);
-  let content;
-  if (matchedRoute) {
-    const { redirect, url } = matchedRoute;
-    if (redirect) {
-      return res.redirect(redirect);
-    }
-    try {
-      const html = await getHtmlContent(url);
-      content = html;
-    } catch (err) {
-      return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
-    }
+server.listen(PORT, err => {
+  if (!err) {
+    logger.info(`Server listening on port ${PORT}`);
   }
-  const html = render(req, content);
-  return res.send(html);
+});
+server.on("error", err => {
+  logger.error("Error in server:");
+  logger.error(err);
+});
+server.on("close", () => {
+  logger.info("Stopped server");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+process.on("SIGINT", () => {
+  server.close();
 });

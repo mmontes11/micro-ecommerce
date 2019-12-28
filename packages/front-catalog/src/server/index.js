@@ -1,16 +1,23 @@
-import express from "express";
-import { render } from "helpers/ssr";
+import { Server } from "http";
+import app from "app";
+import logger from "helpers/log";
 
 const PORT = process.env.FRONT_CATALOG_PORT;
-const app = express();
+const server = new Server(app);
 
-app.use(express.static("public"));
-
-app.get("*", (req, res) => {
-  const html = render();
-  return res.send(html);
+server.listen(PORT, err => {
+  if (!err) {
+    logger.info(`Server listening on port ${PORT}`);
+  }
+});
+server.on("error", err => {
+  logger.error("Error in server:");
+  logger.error(err);
+});
+server.on("close", () => {
+  logger.info("Stopped server");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+process.on("SIGINT", () => {
+  server.close();
 });
