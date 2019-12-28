@@ -19,9 +19,12 @@
     "start:pro": "cross-env NODE_ENV=prodction node build/bundle.js"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.7.0",
     "common": "^0.1.0",
     "compression-webpack-plugin": "^3.0.1",
     "express": "^4.17.1",
+    "http-status": "^1.4.2",
+    "isomorphic-fetch": "^2.2.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",

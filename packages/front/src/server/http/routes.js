@@ -1,4 +1,5 @@
 import { matchPath } from "react-router-dom";
+import config from "common/config";
 
 const routes = [
   {
@@ -8,18 +9,15 @@ const routes = [
   },
   {
     path: "/woman",
-    url: "http://localhost:9000/woman",
-    content: "<p>Woman</p>",
+    url: `${config.FRONT_CATALOG_URL}/woman`,
   },
   {
     path: "/man",
-    url: "http://localhost:9000/man",
-    content: "<p>Man</p>",
+    url: `${config.FRONT_CATALOG_URL}/man`,
   },
   {
     path: "/kids",
-    url: "http://localhost:9000/kids",
-    content: "<p>Kids</p>",
+    url: `${config.FRONT_CATALOG_URL}/kids`,
   },
 ];
 
