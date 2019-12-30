@@ -1,7 +1,7 @@
 import express from "express";
 import expressWinston from "express-winston";
 import logger from "helpers/log";
-import { render } from "helpers/ssr";
+import router from "app/router";
 
 const app = express();
 
@@ -16,9 +16,6 @@ app.use(
 
 app.use(express.static("public"));
 
-app.get("*", (req, res) => {
-  const html = render();
-  return res.send(html);
-});
+app.use("/", router);
 
 export default app;
