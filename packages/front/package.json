@@ -16,7 +16,7 @@
     "start": "npm-run-all --parallel build:dev start:dev",
     "start:dev": "cross-env NODE_ENV=development nodemon build/bundle.js",
     "start:debug": "cross-env NODE_ENV=development node --inspect build/bundle.js",
-    "start:pro": "cross-env NODE_ENV=prodction node build/bundle.js"
+    "start:pro": "cross-env NODE_ENV=production node build/bundle.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.7.0",

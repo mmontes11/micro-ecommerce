@@ -1,24 +1,32 @@
 import { matchPath } from "react-router-dom";
-import config from "common/config";
 
 const routes = [
   {
-    path: "/",
+    path: "/catalog/woman",
     exact: true,
-    redirect: "/woman",
+    name: "Woman",
+    url: `${process.env.FRONT_CATALOG_URL}/woman`,
   },
   {
-    path: "/woman",
-    url: `${config.FRONT_CATALOG_URL}/woman`,
+    path: "/catalog/man",
+    exact: true,
+    name: "Man",
+    url: `${process.env.FRONT_CATALOG_URL}/man`,
   },
   {
-    path: "/man",
-    url: `${config.FRONT_CATALOG_URL}/man`,
-  },
-  {
-    path: "/kids",
-    url: `${config.FRONT_CATALOG_URL}/kids`,
+    path: "/catalog/kids",
+    exact: true,
+    name: "Kids",
+    url: `${process.env.FRONT_CATALOG_URL}/kids`,
   },
 ];
 
-export const matchRoute = pathname => routes.find(r => matchPath(pathname, r));
+const defaultRoute = {
+  redirect: routes[0].path,
+};
+
+export const matchRoute = pathname => {
+  const matchedRoute = routes.find(r => matchPath(pathname, r));
+  return matchedRoute || defaultRoute;
+};
+export default routes;

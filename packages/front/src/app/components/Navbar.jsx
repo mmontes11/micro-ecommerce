@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Menu, Icon } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
+import routes from "app/http/routes";
 
 const { Item } = Menu;
 
@@ -11,15 +12,11 @@ const Navbar = () => (
         <Icon name="cubes" size="big" />
         Micro Ecommerce
       </Item>
-      <Item as={NavLink} to="/woman">
-        Woman
-      </Item>
-      <Item as={NavLink} to="/man">
-        Man
-      </Item>
-      <Item as={NavLink} to="/kids">
-        Kids
-      </Item>
+      {routes.map(r => (
+        <Item key={r.path} as={NavLink} to={r.path}>
+          {r.name}
+        </Item>
+      ))}
     </Container>
   </Menu>
 );

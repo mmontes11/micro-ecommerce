@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 if (!config) {
-  throw new Error(`Error reading configuration. NODE_ENV = ${process.env.NODE_ENV }`);
+  throw new Error(`Error reading configuration. NODE_ENV = ${process.env.NODE_ENV}`);
 }
 
 const { error, parsed } = config;
@@ -20,4 +20,9 @@ if (error) {
   throw error;
 }
 
-module.exports = parsed;
+const stringifiedConfig = Object.keys(parsed).reduce(
+  (acc, key) => ({ ...acc, [key]: JSON.stringify(parsed[key]) }),
+  {},
+);
+
+module.exports = stringifiedConfig;
