@@ -2,31 +2,26 @@ import { matchPath } from "react-router-dom";
 
 const routes = [
   {
-    path: "/catalog/woman",
-    exact: true,
-    name: "Woman",
-    url: `${process.env.FRONT_CATALOG_URL}/woman`,
-  },
-  {
-    path: "/catalog/man",
-    exact: true,
-    name: "Man",
-    url: `${process.env.FRONT_CATALOG_URL}/man`,
-  },
-  {
-    path: "/catalog/kids",
-    exact: true,
-    name: "Kids",
-    url: `${process.env.FRONT_CATALOG_URL}/kids`,
+    path: "/catalog/:key",
+    frontUrl: process.env.FRONT_CATALOG_URL,
   },
 ];
 
 const defaultRoute = {
-  redirect: routes[0].path,
+  redirect: "/catalog/woman",
 };
 
 export const matchRoute = pathname => {
-  const matchedRoute = routes.find(r => matchPath(pathname, r));
-  return matchedRoute || defaultRoute;
+  for (const r of routes) {
+    const matchedRoute = matchPath(pathname, r);
+    if (matchedRoute) {
+      return {
+        ...matchedRoute,
+        url: `${r.frontUrl}${matchedRoute.url}`,
+      };
+    }
+  }
+  return defaultRoute;
 };
+
 export default routes;
