@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Navbar from "components/Navbar";
+import App from "components/App";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.hydrate(
   <BrowserRouter forceRefresh>
-    <Navbar />
+    <App />
   </BrowserRouter>,
   document.getElementById("root"),
 );

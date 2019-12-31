@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
-import Navbar from "components/Navbar";
+import App from "components/App";
 
 export const render = (req, content) => {
-  const navbar = ReactDOMServer.renderToString(
+  const app = ReactDOMServer.renderToString(
     <StaticRouter location={req.url}>
-      <Navbar />
+      <App />
     </StaticRouter>,
   );
   return `
@@ -20,7 +20,7 @@ export const render = (req, content) => {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
       </head>
       <body>
-        <div id="root">${navbar}</div>
+        <div id="root">${app}</div>
         <div id="content">${content}</div>
         <script src="/bundle.js"></script>
       </body>
