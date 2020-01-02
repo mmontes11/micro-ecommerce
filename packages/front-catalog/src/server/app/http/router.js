@@ -1,5 +1,5 @@
 import express from "express";
-import { routes } from "front-catalog-common/config";
+import { routes } from "shared/config";
 
 const router = express.Router();
 

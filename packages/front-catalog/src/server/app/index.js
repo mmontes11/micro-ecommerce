@@ -1,7 +1,7 @@
 import express from "express";
 import expressWinston from "express-winston";
 import router from "server/app/http/router";
-import logger from "front-catalog-common/log";
+import logger from "shared/log";
 
 const app = express();
 

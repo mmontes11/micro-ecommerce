@@ -1,5 +1,5 @@
 import { render } from "server/helpers/ssr";
-import logger from "front-catalog-common/log";
+import logger from "shared/log";
 
 const handler = (req, res) => {
   logger.info("Request URL:");

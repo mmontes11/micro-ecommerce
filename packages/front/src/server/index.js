@@ -3,7 +3,7 @@ import "isomorphic-fetch";
 import "common/config";
 import { Server } from "http";
 import app from "server/app";
-import logger from "front-common/log";
+import logger from "shared/log";
 
 const PORT = process.env.FRONT_PORT;
 const server = new Server(app);
