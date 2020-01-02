@@ -7,7 +7,7 @@ const routes = [
   },
 ];
 
-const defaultRoute = {
+export const defaultRoute = {
   redirect: "/catalog/woman",
 };
 
