@@ -19,7 +19,7 @@ const routes = [
   },
 ];
 
-const Navbar = () => (
+const App = () => (
   <Menu attached="top" borderless>
     <Container>
       <Item as={Link} to="/" header>
@@ -35,4 +35,4 @@ const Navbar = () => (
   </Menu>
 );
 
-export default Navbar;
+export default App;

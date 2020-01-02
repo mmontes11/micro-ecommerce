@@ -2,8 +2,7 @@ import { matchPath } from "react-router-dom";
 
 const routes = [
   {
-    path: "/catalog/:key",
-    exact: true,
+    path: "/catalog/*",
     frontUrl: process.env.FRONT_CATALOG_URL,
   },
 ];

@@ -2,8 +2,8 @@ import "@babel/polyfill";
 import "isomorphic-fetch";
 import "common/config";
 import { Server } from "http";
-import app from "app";
-import logger from "helpers/log";
+import app from "server/app";
+import logger from "front-common/log";
 
 const PORT = process.env.FRONT_PORT;
 const server = new Server(app);

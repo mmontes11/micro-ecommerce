@@ -1,7 +1,7 @@
 import "common/config";
 import { Server } from "http";
-import app from "app";
-import logger from "helpers/log";
+import app from "server/app";
+import logger from "front-catalog-common/log";
 
 const PORT = process.env.FRONT_CATALOG_PORT;
 const server = new Server(app);

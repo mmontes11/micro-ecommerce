@@ -1,7 +1,7 @@
-import { render } from "helpers/ssr";
-import logger from "helpers/log";
+import { render } from "server/helpers/ssr";
+import logger from "front-catalog-common/log";
 
-const handle = (req, res) => {
+const handler = (req, res) => {
   logger.info("Request URL:");
   logger.info(req.url);
   logger.info("Request params:");
@@ -10,4 +10,4 @@ const handle = (req, res) => {
   return res.send(html);
 };
 
-export default handle;
+export default handler;

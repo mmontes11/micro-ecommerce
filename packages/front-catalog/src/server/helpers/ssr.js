@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
-import App from "components/App";
-import logger from "helpers/log";
+import App from "app/components/App";
+import logger from "front-catalog-common/log";
 
 export const render = req => {
   const context = {};

@@ -1,8 +1,8 @@
 import httpStatus from "http-status";
-import { matchRoute } from "app/http/routes";
-import { getHtmlContent } from "helpers/request";
-import { render } from "helpers/ssr";
-import logger from "helpers/log";
+import { matchRoute } from "server/app/http/routes";
+import { getHtmlContent } from "server/helpers/request";
+import { render } from "server/helpers/ssr";
+import logger from "front-common/log";
 
 const handle = async (req, res) => {
   const matchedRoute = matchRoute(req.url);

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
-import App from "components/App";
+import App from "app/components/App";
 
 export const render = (req, content) => {
   const app = ReactDOMServer.renderToString(

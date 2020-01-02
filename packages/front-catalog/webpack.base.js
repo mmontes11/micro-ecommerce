@@ -16,11 +16,14 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".jsx"],
-    modules: ["./src/app", "./src/server", "node_modules"],
+    modules: ["./src", "node_modules"],
   },
   plugins: [
     new webpack.DefinePlugin({
       "process.env": config,
     }),
   ],
+  node: {
+    fs: "empty",
+  },
 };
