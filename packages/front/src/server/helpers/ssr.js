@@ -9,6 +9,14 @@ export const render = (req, content) => {
       <App />
     </StaticRouter>,
   );
+  let appContent = `
+    <div id="root">${app}</div>
+  `;
+  if (content) {
+    appContent += `
+      <div id="content">${content}</div>
+    `;
+  }
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -16,12 +24,10 @@ export const render = (req, content) => {
         <meta charset="utf-8" />
         <title>Micro Ecommerce</title>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="/styles.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
       </head>
       <body>
-        <div id="root">${app}</div>
-        <div id="content">${content}</div>
+        ${appContent}
         <script src="/bundle.js"></script>
       </body>
     </html>
