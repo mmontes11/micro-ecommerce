@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 import App from "app/components/App";
-import logger from "shared/log";
 
 export const render = req => {
   const context = {};
@@ -11,9 +10,7 @@ export const render = req => {
       <App />
     </StaticRouter>,
   );
-  logger.info("Context:");
-  logger.info(JSON.stringify(context));
-  return `
+  const html = `
     <!DOCTYPE html>
     <html lang="en">
       <head>
@@ -28,4 +25,5 @@ export const render = req => {
       </body>
     </html>
   `;
+  return { html, context };
 };

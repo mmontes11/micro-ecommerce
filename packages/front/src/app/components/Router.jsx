@@ -1,13 +1,13 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import NotFound from "app/components/error/NotFound";
-import ServerError from "app/components/error/ServerError"
+import { statusRoutes } from "shared/config";
 import Navbar from "app/components/ui/Navbar";
 
 const Router = () => (
   <Switch>
-    <Route path="/not-found" component={NotFound} />
-    <Route path="/error" component={ServerError} />
+    {statusRoutes.map(sr => (
+      <Route key={sr.path} path={sr.path} component={sr.component} />
+    ))}
     <Route component={Navbar} />
   </Switch>
 );

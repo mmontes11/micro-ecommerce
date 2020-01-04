@@ -1,6 +1,6 @@
-import Catalog from "app/components/Catalog";
-import Category from "app/components/Category";
-import Product from "app/components/Product";
+import Catalog from "app/components/catalog/Catalog";
+import Category from "app/components/catalog/Category";
+import Product from "app/components/catalog/Product";
 import handler from "server/app/http/handler";
 
 export const routes = [

@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import NotFound from "app/components/NotFound";
-import { routes }  from "shared/config";
+import NotFound from "app/components/status/NotFound";
+import { routes } from "shared/config";
 
 const Router = () => (
   <Switch>
