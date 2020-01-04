@@ -5,6 +5,11 @@ export const notFoundRoute = {
   exact: true,
 };
 
+export const serverErrorRoute = {
+  path: "/error",
+  exact: true,
+};
+
 const routes = [
   {
     path: "/",
@@ -16,6 +21,7 @@ const routes = [
     frontUrl: process.env.FRONT_CATALOG_URL,
   },
   notFoundRoute,
+  serverErrorRoute,
 ];
 
 export const matchRoute = pathname => {
@@ -29,13 +35,13 @@ export const matchRoute = pathname => {
     let resultRoute = { ...matchedRoute };
     if (redirect) {
       resultRoute = {
-        ...matchRoute,
+        ...resultRoute,
         redirect,
       };
     }
     if (frontUrl && url) {
       resultRoute = {
-        ...matchedRoute,
+        ...resultRoute,
         contentUrl: `${frontUrl}${url}`,
       };
     }
@@ -44,4 +50,7 @@ export const matchRoute = pathname => {
   return null;
 };
 
-export const isNotFoundRoute = route => route.path === notFoundRoute.path;
+export const isErrorRoute = route => {
+  const errorRoutes = [notFoundRoute, serverErrorRoute];
+  return errorRoutes.some(er => er.path === route.path);
+};

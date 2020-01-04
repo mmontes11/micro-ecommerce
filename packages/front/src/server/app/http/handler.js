@@ -1,11 +1,11 @@
 import httpStatus from "http-status";
-import { notFoundRoute, matchRoute, isNotFoundRoute } from "server/app/http/routes";
+import { notFoundRoute, serverErrorRoute, matchRoute, isErrorRoute } from "server/app/http/routes";
 import { getHtmlContent } from "server/helpers/request";
 import { render } from "server/helpers/ssr";
 import logger from "shared/log";
 
 const getContent = async route => {
-  if (isNotFoundRoute(route)) {
+  if (isErrorRoute(route)) {
     return null;
   }
   const { contentUrl } = route;
@@ -13,6 +13,13 @@ const getContent = async route => {
     return null;
   }
   return getHtmlContent(contentUrl);
+};
+
+const handleError = (res, err) => {
+  if (err.status === httpStatus.NOT_FOUND) {
+    return res.redirect(notFoundRoute.path);
+  }
+  return res.redirect(serverErrorRoute.path);
 };
 
 const handle = async (req, res) => {
@@ -30,10 +37,7 @@ const handle = async (req, res) => {
     return res.send(html);
   } catch (err) {
     logger.error(err);
-    if (err.status === httpStatus.NOT_FOUND) {
-      return res.redirect(notFoundRoute.path);
-    }
-    return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+    return handleError(res, err);
   }
 };
 
