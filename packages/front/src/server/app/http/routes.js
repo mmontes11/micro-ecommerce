@@ -1,14 +1,16 @@
 import { matchPath } from "react-router-dom";
 
-export const defaultRoute = {
-  path: "/catalog/woman",
-};
-
 export const notFoundRoute = {
   path: "/not-found",
+  exact: true,
 };
 
 const routes = [
+  {
+    path: "/",
+    exact: true,
+    redirect: "/catalog/woman",
+  },
   {
     path: "/catalog/*",
     frontUrl: process.env.FRONT_CATALOG_URL,
@@ -19,17 +21,25 @@ const routes = [
 export const matchRoute = pathname => {
   for (const r of routes) {
     const matchedRoute = matchPath(pathname, r);
-    if (matchedRoute) {
-      const { frontUrl } = r;
-      const { url } = matchedRoute;
-      if (frontUrl && url) {
-        return {
-          ...matchedRoute,
-          contentUrl: `${frontUrl}${url}`,
-        };
-      }
-      return matchedRoute;
+    if (!matchedRoute) {
+      continue;
     }
+    const { redirect, frontUrl } = r;
+    const { url } = matchedRoute;
+    let resultRoute = { ...matchedRoute };
+    if (redirect) {
+      resultRoute = {
+        ...matchRoute,
+        redirect,
+      };
+    }
+    if (frontUrl && url) {
+      resultRoute = {
+        ...matchedRoute,
+        contentUrl: `${frontUrl}${url}`,
+      };
+    }
+    return resultRoute;
   }
   return null;
 };
