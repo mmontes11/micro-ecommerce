@@ -15,7 +15,7 @@ const catalogs = [
     id: 2,
     key: "kids",
     name: "Kids",
-  }
+  },
 ];
 
 const schema = `

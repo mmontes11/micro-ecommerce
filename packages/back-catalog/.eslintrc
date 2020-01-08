@@ -1,0 +1,6 @@
+{
+  "extends": ["mmontes11-node"],
+  "settings": {
+    "import/resolver": "webpack"
+  }
+}
