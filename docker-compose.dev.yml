@@ -1,0 +1,16 @@
+version: "3"
+services:
+  catalog_db:
+    container_name: me_catalog_db_dev
+    image: mariadb
+    env_file: .env.dev
+    environment:
+      MYSQL_ROOT_PASSWORD: ${BACK_CATALOG_DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${BACK_CATALOG_DB_NAME}
+      MYSQL_USER: ${BACK_CATALOG_DB_USER}
+      MYSQL_PASSWORD: ${BACK_CATALOG_DB_PASSWORD}
+    restart: unless-stopped
+    volumes:
+      - ./data/catalog:/var/lib/mysql
+    ports:
+      - "${BACK_CATALOG_DB_PORT}:${BACK_CATALOG_DB_PORT}"
