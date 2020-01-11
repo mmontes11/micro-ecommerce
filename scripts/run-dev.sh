@@ -5,6 +5,6 @@
 
 echo "Starting... 🚀"
 docker-compose -f docker-compose.dev.yml up -d
-ttab -t "back-catalog" "cd packages/back-catalog; npm start"
+ttab -t "back-catalog" "cd packages/catalog/back; npm start"
 ttab -t "front" "cd packages/front; npm start"
-ttab -t "front-catalog" "cd packages/front-catalog; npm start"
+ttab -t "front-catalog" "cd packages/catalog/front; npm start"
