@@ -1,16 +1,15 @@
 import Sequelize from "sequelize";
-import logger from "helpers/log";
+import sequelize from "./sequelize";
+import umzug from "./umzug";
+import createCatalog from "./models/catalog";
 
-const sequelize = new Sequelize(
-  process.env.BACK_CATALOG_DB_NAME,
-  process.env.BACK_CATALOG_DB_USER,
-  process.env.BACK_CATALOG_DB_PASSWORD,
-  {
-    host: process.env.BACK_CATALOG_DB_HOST,
-    port: process.env.BACK_CATALOG_DB_PORT,
-    dialect: "mariadb",
-    logging: msg => logger.info(msg),
-  },
-);
+const Catalog = createCatalog(sequelize, Sequelize);
+
+const models = { Catalog };
+
+const migrate = () => umzug.up();
+const reset = () => umzug.down({ to: 0 });
+
+export { models, migrate, reset };
 
 export default sequelize;

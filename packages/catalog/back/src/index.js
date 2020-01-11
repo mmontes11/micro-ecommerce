@@ -1,8 +1,8 @@
 import "common/config";
 import { Server } from "http";
-import app from "app";
-import sequelize from "app/storage";
-import logger from "helpers/log";
+import app from "./app";
+import sequelize, { migrate } from "./app/storage";
+import logger from "./helpers/log";
 
 const SERVER_PORT = process.env.BACK_CATALOG_PORT;
 const DB_PORT = process.env.BACK_CATALOG_DB_PORT;
@@ -25,6 +25,7 @@ sequelize
   .authenticate()
   .then(() => {
     logger.info(`Connected to database on port ${DB_PORT}`);
+    migrate();
   })
   .catch(err => {
     logger.error("Error in database");

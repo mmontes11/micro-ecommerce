@@ -1,8 +1,7 @@
 import express from "express";
 import expressWinston from "express-winston";
-import logger from "helpers/log";
-import cors from "cors";
-import apolloServer from "app/graphql";
+import apolloServer from "./graphql";
+import logger from "../helpers/log";
 
 const app = express();
 
@@ -14,8 +13,6 @@ app.use(
     colorize: true,
   }),
 );
-
-app.use(cors());
 
 apolloServer.applyMiddleware({ app, path: "/api/graphql" });
 
