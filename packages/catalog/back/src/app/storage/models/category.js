@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const Catalog = sequelize.define("catalog", {
+  const Category = sequelize.define("category", {
     key: {
       type: DataTypes.STRING,
       unique: true,
@@ -12,8 +12,9 @@ export default (sequelize, DataTypes) => {
       validate: { notEmpty: true },
     },
   });
-  Catalog.associate = models => {
-    Catalog.hasMany(models.Category);
+  Category.associate = models => {
+    Category.belongsTo(models.Catalog);
+    Category.hasMany(models.Product);
   };
-  return Catalog;
+  return Category;
 };
