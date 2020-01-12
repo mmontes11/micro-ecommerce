@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Product = sequelize.define("product", {
+  const Color = sequelize.define("color", {
     key: {
       type: DataTypes.STRING,
       unique: true,
@@ -11,21 +11,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: { notEmpty: true },
     },
-    brand: {
-      type: DataTypes.STRING,
-    },
-    price: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    currency: {
+    image: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: { notEmpty: true },
+      validate: { isUrl: true },
     },
   });
-  Product.associate = models => {
-    Product.belongsTo(models.Category);
+  Color.associate = models => {
+    Color.belongsToMany(models.Product, { through: "product_color" });
   };
-  return Product;
+  return Color;
 };
