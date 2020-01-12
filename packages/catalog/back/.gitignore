@@ -43,3 +43,6 @@ coverage
 **/bundle.*
 bundle.*
 build/
+
+# data
+*.sqlite

@@ -24,6 +24,7 @@
     "graphql": "^14.5.8",
     "mariadb": "^2.1.5",
     "sequelize": "^5.21.3",
+    "sqlite3": "^4.1.1",
     "umzug": "^2.2.0",
     "winston": "^3.2.1"
   },
