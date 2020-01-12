@@ -1,4 +1,4 @@
-export default (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Catalog = sequelize.define("catalog", {
     key: {
       type: DataTypes.STRING,

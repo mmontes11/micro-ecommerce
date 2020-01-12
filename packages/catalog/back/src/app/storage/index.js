@@ -1,15 +1,23 @@
 import Sequelize from "sequelize";
+import fs from "fs";
 import sequelize from "./sequelize";
 import umzug from "./umzug";
-import createCatalog from "./models/catalog";
-import createCategory from "./models/category";
-import createProduct from "./models/product";
 
-const Catalog = createCatalog(sequelize, Sequelize);
-const Category = createCategory(sequelize, Sequelize);
-const Product = createProduct(sequelize, Sequelize);
+let importedModels = {};
 
-const models = { Catalog, Category, Product };
+fs.readdirSync(`${__dirname}/models`)
+  .filter(file => file.endsWith(".js"))
+  .forEach(file => {
+    const [modelName] = file.split(".");
+    const createModel = require(`./models/${modelName}`);
+    const model = createModel(sequelize, Sequelize);
+    importedModels = {
+      ...importedModels,
+      [modelName]: model,
+    };
+  });
+
+const models = importedModels;
 
 Object.keys(models).forEach(key => {
   const model = models[key];

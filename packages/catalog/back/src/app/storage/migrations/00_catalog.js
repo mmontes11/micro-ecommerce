@@ -1,6 +1,6 @@
 const table = "catalog";
 
-export default {
+module.exports = {
   up(query, DataTypes) {
     return query.createTable(table, {
       id: {
