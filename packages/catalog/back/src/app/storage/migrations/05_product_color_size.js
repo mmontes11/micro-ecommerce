@@ -1,4 +1,4 @@
-const table = "product_color";
+const table = "product_color_size";
 
 module.exports = {
   up(query, DataTypes) {
@@ -24,6 +24,16 @@ module.exports = {
         references: {
           key: "id",
           model: "color",
+        },
+        allowNull: false,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+      },
+      sizeId: {
+        type: DataTypes.INTEGER,
+        references: {
+          key: "id",
+          model: "size",
         },
         allowNull: false,
         onUpdate: "CASCADE",

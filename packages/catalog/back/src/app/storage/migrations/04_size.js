@@ -1,4 +1,4 @@
-const table = "product";
+const table = "size";
 
 module.exports = {
   up(query, DataTypes) {
@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      key: {
+      sku: {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false,
@@ -20,17 +20,14 @@ module.exports = {
         allowNull: false,
         validate: { notEmpty: true },
       },
-      brand: {
-        type: DataTypes.STRING,
-      },
-      categoryId: {
+      price: {
         type: DataTypes.INTEGER,
-        references: {
-          key: "id",
-          model: "category",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "SET NULL",
+        allowNull: false,
+      },
+      currency: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: { notEmpty: true },
       },
     });
   },
