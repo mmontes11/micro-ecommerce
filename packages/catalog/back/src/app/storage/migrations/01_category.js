@@ -20,7 +20,7 @@ module.exports = {
         allowNull: false,
         validate: { notEmpty: true },
       },
-      catalogId: {
+      catalog_id: {
         type: DataTypes.INTEGER,
         references: {
           key: "id",

@@ -4,6 +4,12 @@ import logger from "../../helpers/log";
 let opts = {
   dialect: process.env.BACK_CATALOG_DB_DIALECT,
   logging: msg => logger.info(msg),
+  define: {
+    timestamps: false,
+    underscored: true,
+    freezeTableName: true,
+    charset: "utf8",
+  },
 };
 
 switch (opts.dialect) {

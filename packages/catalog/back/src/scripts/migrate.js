@@ -1,3 +1,4 @@
+import "@babel/polyfill";
 import "common/config";
 import { migrate, reset } from "../app/storage";
 import logger from "../helpers/log";
@@ -49,6 +50,5 @@ executedCmd
   })
   .catch(err => {
     logger.error(`'${cmd}' ❌`);
-    logger.error(err);
-    process.exit(1);
+    throw err;
   });

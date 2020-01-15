@@ -15,6 +15,7 @@
     "migrate:pro:reset": "cross-env NODE_ENV=production babel-node src/scripts/migrate.js reset"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.8.3",
     "apollo-server": "^2.9.15",
     "apollo-server-express": "^2.9.15",
     "common": "^0.1.0",
