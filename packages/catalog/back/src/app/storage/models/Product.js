@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     price: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: { notEmpty: true },
     },
     currency: {
       type: DataTypes.STRING,

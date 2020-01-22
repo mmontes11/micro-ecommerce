@@ -23,7 +23,17 @@ module.exports = {
       brand: {
         type: DataTypes.STRING,
       },
-      categoryId: {
+      price: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: { notEmpty: true },
+      },
+      currency: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: { notEmpty: true },
+      },
+      category_id: {
         type: DataTypes.INTEGER,
         references: {
           key: "id",
