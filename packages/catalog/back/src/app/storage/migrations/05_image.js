@@ -20,17 +20,7 @@ module.exports = {
         unique: true,
         allowNull: false,
         validate: { isUrl: true },
-      },
-      colorId: {
-        type: DataTypes.INTEGER,
-        references: {
-          key: "id",
-          model: "color",
-        },
-        allowNull: false,
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
+      }
     });
   },
   down(query) {

@@ -1,31 +1,49 @@
 import { models } from "../../storage";
 
-const { Catalog, Category, Product } = models;
+const { Catalog, Category, Product, Color, Image } = models;
 
 module.exports = {
-  async up() {
+  async up(queryInterface) {
     const catalog = await Catalog.create({
       key: "man",
       name: "Man",
     });
-    const product = {
+    const category = await Category.create({
+      key: "tshirt",
+      name: "T-Shirt",
+      catalogId: catalog.id,
+    });
+
+    const color = await Color.create({
+      key: "white",
+      name: "White",
+      image: "http://color.white",
+    });
+    const image = await Image.create({
+      location: "category",
+      url: "http://category.image",
+    });
+    const product = await Product.create({
       key: "hollister-tshirt",
       name: "Hollister T-Shirt",
       brand: "Hollister",
       price: 30000,
       currency: "eur",
-    };
-    const category = await Category.create(
+      categoryId: category.id,
+    });
+
+    const productColorImageRows = [
       {
-        key: "tshirt",
-        name: "T-Shirt",
-        products: [product],
-        catalogId: catalog.id,
+        product_id: product.id,
+        color_id: color.id,
+        image_id: image.id,
       },
-      { include: [Product] },
-    );
+    ];
+    await queryInterface.bulkInsert("product_color_image", productColorImageRows);
+
+    console.log(await product.getCategory());
   },
-  async down() {
+  async down(queryInterface) {
     const promises = [...Object.values(models)].map(m => m.destroy({ where: {}, force: true }));
     await Promise.all(promises);
   },

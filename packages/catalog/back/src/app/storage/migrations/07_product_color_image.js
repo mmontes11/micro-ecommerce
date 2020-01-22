@@ -2,14 +2,15 @@ const table = "product_color_image";
 
 module.exports = {
   up(query, DataTypes) {
-    return query.createTable(table, {
+    return query.createTable(table, 
+      {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
       },
-      productId: {
+      product_id: {
         type: DataTypes.INTEGER,
         references: {
           key: "id",
@@ -19,7 +20,7 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
-      colorId: {
+      color_id: {
         type: DataTypes.INTEGER,
         references: {
           key: "id",
@@ -29,7 +30,7 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
-      imageId: {
+      image_id: {
         type: DataTypes.INTEGER,
         references: {
           key: "id",

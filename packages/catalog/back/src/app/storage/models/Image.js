@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Image = sequelize.define("product", {
+  const Image = sequelize.define("image", {
     location: {
       type: DataTypes.STRING,
       unique: true,
