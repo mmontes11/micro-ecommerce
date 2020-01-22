@@ -9,14 +9,15 @@
     "npm-run-all": "^4.1.5"
   },
   "scripts": {
-    "install": "lerna bootstrap",
-    "start": "npm-run-all --parallel start:*",
-    "start:front": "cd packages/front && npm start",
-    "start:front-catalog": "cd packages/front-catalog && npm start",
-    "lint": "lerna run lint",
-    "clean": "lerna run clean",
+    "bootstrap": "lerna bootstrap",
     "build:dev": "lerna run build",
-    "build:pro": "lerna run build:pro"
+    "build:pro": "lerna run build:pro",
+    "clean": "lerna clean",
+    "lint": "lerna run lint",
+    "start:back-catalog": "cd packages&back-catalog && npm start",
+    "start:front-catalog": "cd packages/front-catalog && npm start",
+    "start:front": "cd packages/front && npm start",
+    "start": "npm-run-all --parallel start:*"
   },
   "repository": {
     "type": "git",

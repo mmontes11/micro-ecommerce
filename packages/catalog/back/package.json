@@ -6,13 +6,13 @@
     "build": "babel -d build/ src/",
     "clean": "rm -rf build",
     "lint": "cross-env NODE_ENV=development eslint . --fix",
-    "start": "cross-env NODE_ENV=development nodemon src/index.js --exec babel-node",
+    "migrate:pro:reset": "cross-env NODE_ENV=production babel-node src/scripts/migrate.js reset",
+    "migrate:pro": "cross-env NODE_ENV=production babel-node src/scripts/migrate.js migrate",
+    "migrate:reset": "cross-env NODE_ENV=development babel-node src/scripts/migrate.js reset",
+    "migrate": "cross-env NODE_ENV=development babel-node src/scripts/migrate.js migrate",
     "start:debug": "cross-env NODE_ENV=development node --inspect build/bundle.js",
     "start:pro": "cross-env NODE_ENV=production node index.js",
-    "migrate": "cross-env NODE_ENV=development babel-node src/scripts/migrate.js migrate",
-    "migrate:reset": "cross-env NODE_ENV=development babel-node src/scripts/migrate.js reset",
-    "migrate:pro": "cross-env NODE_ENV=production babel-node src/scripts/migrate.js migrate",
-    "migrate:pro:reset": "cross-env NODE_ENV=production babel-node src/scripts/migrate.js reset"
+    "start": "cross-env NODE_ENV=development nodemon src/index.js --exec babel-node"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
