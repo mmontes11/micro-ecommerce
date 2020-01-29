@@ -1,9 +1,8 @@
-const table = "product_color_image";
+const table = "product_color";
 
 module.exports = {
   up(query, DataTypes) {
-    return query.createTable(table, 
-      {
+    return query.createTable(table, {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -25,16 +24,6 @@ module.exports = {
         references: {
           key: "id",
           model: "color",
-        },
-        allowNull: false,
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
-      image_id: {
-        type: DataTypes.INTEGER,
-        references: {
-          key: "id",
-          model: "image",
         },
         allowNull: false,
         onUpdate: "CASCADE",

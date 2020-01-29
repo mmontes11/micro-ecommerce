@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      productId: {
+      product_id: {
         type: DataTypes.INTEGER,
         references: {
           key: "id",
@@ -19,7 +19,7 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
-      colorId: {
+      color_id: {
         type: DataTypes.INTEGER,
         references: {
           key: "id",
@@ -29,7 +29,7 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
-      sizeId: {
+      size_id: {
         type: DataTypes.INTEGER,
         references: {
           key: "id",

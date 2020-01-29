@@ -20,7 +20,7 @@ module.exports = {
         unique: true,
         allowNull: false,
         validate: { isUrl: true },
-      }
+      },
     });
   },
   down(query) {
