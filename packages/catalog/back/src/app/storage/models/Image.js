@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   Image.associate = models => {
-    Image.belongsToMany(models.Product, { through: "product_color_image" });
+    Image.hasOne(models.Color);
   };
   return Image;
 };

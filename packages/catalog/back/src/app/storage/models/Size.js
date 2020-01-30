@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: { notEmpty: true },
     },
+    order: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: { notEmpty: true },
+    },
   });
   Size.associate = models => {
     Size.belongsToMany(models.Color, { through: "product_color_size" });

@@ -29,6 +29,11 @@ module.exports = {
         allowNull: false,
         validate: { notEmpty: true },
       },
+      order: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: { notEmpty: true },
+      },
     });
   },
   down(query) {

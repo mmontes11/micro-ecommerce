@@ -1,4 +1,4 @@
-const table = "image";
+const table = "color";
 
 module.exports = {
   up(query, DataTypes) {
@@ -9,18 +9,27 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      location: {
+      key: {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false,
         validate: { notEmpty: true },
       },
-      url: {
+      name: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false,
-        validate: { isUrl: true },
+        validate: { notEmpty: true },
       },
+      image_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          key: "id",
+          model: "image",
+        },
+        allowNull: true,
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+      }
     });
   },
   down(query) {
