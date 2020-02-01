@@ -13,12 +13,10 @@ module.exports = {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false,
-        validate: { notEmpty: true },
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: { notEmpty: true },
       },
       brand: {
         type: DataTypes.STRING,

@@ -13,12 +13,10 @@ module.exports = {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false,
-        validate: { notEmpty: true },
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: { notEmpty: true },
       },
       price: {
         type: DataTypes.INTEGER,
@@ -27,12 +25,30 @@ module.exports = {
       currency: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: { notEmpty: true },
       },
       order: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        validate: { notEmpty: true },
+      },
+      product_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          key: "id",
+          model: "product",
+        },
+        allowNull: true,
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+      },
+      color_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          key: "id",
+          model: "color",
+        },
+        allowNull: true,
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
       },
     });
   },

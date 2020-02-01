@@ -10,10 +10,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: { notEmpty: true },
-    }
+    },
   });
   Color.associate = models => {
-    Color.belongsTo(models.Image);
     Color.belongsToMany(models.Product, { through: "product_color", as: "products" });
   };
   return Color;

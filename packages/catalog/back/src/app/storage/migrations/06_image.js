@@ -12,12 +12,30 @@ module.exports = {
       location: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: { notEmpty: true },
       },
       url: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: { isUrl: true },
+      },
+      product_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          key: "id",
+          model: "product",
+        },
+        allowNull: true,
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+      },
+      color_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          key: "id",
+          model: "color",
+        },
+        allowNull: true,
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
       },
     });
   },

@@ -14,7 +14,7 @@
     "clean:server": "rm -rf build",
     "clean": "npm-run-all --parallel clean:*",
     "lint": "cross-env NODE_ENV=development eslint . --fix",
-    "start:debug": "cross-env NODE_ENV=development node --inspect build/bundle.js",
+    "start:debug": "cross-env NODE_ENV=development node --inspect-brk build/bundle.js",
     "start:dev": "cross-env NODE_ENV=development nodemon build/bundle.js",
     "start:pro": "cross-env NODE_ENV=production node build/bundle.js",
     "start": "npm-run-all --parallel build:dev start:dev"

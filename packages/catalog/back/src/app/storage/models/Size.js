@@ -1,5 +1,5 @@
-module.exports = (sequelize, DataTypes) => {
-  const Size = sequelize.define("size", {
+module.exports = (sequelize, DataTypes) =>
+  sequelize.define("size", {
     sku: {
       type: DataTypes.STRING,
       unique: true,
@@ -26,8 +26,3 @@ module.exports = (sequelize, DataTypes) => {
       validate: { notEmpty: true },
     },
   });
-  Size.associate = models => {
-    Size.belongsToMany(models.Color, { through: "product_color_size" });
-  };
-  return Size;
-};
