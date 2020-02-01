@@ -29,6 +29,4 @@ Object.keys(models).forEach(key => {
 const migrate = () => umzug.up();
 const reset = () => umzug.down({ to: 0 });
 
-export { models, migrate, reset };
-
-export default sequelize;
+export default { models, sequelize, migrate, reset };

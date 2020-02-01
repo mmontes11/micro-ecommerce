@@ -1,7 +1,9 @@
 import "@babel/polyfill";
 import "common/config";
-import { migrate, reset } from "../app/storage";
+import storage from "../app/storage";
 import logger from "../helpers/log";
+
+const { migrate, reset } = storage;
 
 const printUsage = () => {
   logger.info(

@@ -1,5 +1,5 @@
 import { indexBy } from "common/data";
-import { models } from "..";
+import storage from "..";
 import {
   catalogFactory,
   categoryFactory,
@@ -9,12 +9,14 @@ import {
 } from "./helpers/data.factory";
 import { catalogs, getCategories, colors, sizes, getProducts } from "./helpers/data";
 
+const { models } = storage;
+
 module.exports = {
-  async up(queryInterface) {
-    const createCatalogs = catalogFactory(queryInterface, models);
-    const createCategories = categoryFactory(queryInterface, models);
-    const createColors = colorsFactory(queryInterface, models);
-    const createProducts = productFactory(queryInterface, models);
+  async up(query) {
+    const createCatalogs = catalogFactory(query, models);
+    const createCategories = categoryFactory(query, models);
+    const createColors = colorsFactory(query, models);
+    const createProducts = productFactory(query, models);
 
     const [man, woman] = await createCatalogs(catalogs);
     const catalogObject = { man, woman };

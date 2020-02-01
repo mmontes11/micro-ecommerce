@@ -2,12 +2,13 @@ import "@babel/polyfill";
 import "common/config";
 import { Server } from "http";
 import app from "./app";
-import sequelize, { migrate } from "./app/storage";
+import storage from "./app/storage";
 import logger from "./helpers/log";
 
 const SERVER_PORT = process.env.BACK_CATALOG_PORT;
 const DB_PORT = process.env.BACK_CATALOG_DB_PORT;
 const server = new Server(app);
+const { sequelize, migrate } = storage;
 
 server.listen(SERVER_PORT, err => {
   if (!err) {

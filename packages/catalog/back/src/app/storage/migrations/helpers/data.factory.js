@@ -2,7 +2,7 @@ import slufigy from "slugify";
 
 const normalizeKey = key => slufigy(key, { lower: true });
 
-export const catalogFactory = (queryInterface, models) => catalogs =>
+export const catalogFactory = (query, models) => catalogs =>
   Promise.all(
     catalogs.map(c =>
       models.Catalog.create({
@@ -12,7 +12,7 @@ export const catalogFactory = (queryInterface, models) => catalogs =>
     ),
   );
 
-export const categoryFactory = (queryInterface, models) => categories =>
+export const categoryFactory = (query, models) => categories =>
   Promise.all(
     categories.map(c =>
       models.Category.create({
@@ -23,7 +23,7 @@ export const categoryFactory = (queryInterface, models) => categories =>
     ),
   );
 
-export const colorsFactory = (queryInterface, models) => async colors => {
+export const colorsFactory = (query, models) => async colors => {
   let imageUrlIndex = {};
   const createdColors = await Promise.all(
     colors.map(async c => {
@@ -43,12 +43,12 @@ export const colorsFactory = (queryInterface, models) => async colors => {
     url: imageUrlIndex[c.key],
     color_id: c.id,
   }));
-  await queryInterface.bulkInsert("image", colorImageRows);
+  await query.bulkInsert("image", colorImageRows);
   return createdColors;
 };
 
-const productColorsFactory = queryInterface => (productId, colorIds) =>
-  queryInterface.bulkInsert(
+const productColorsFactory = query => (productId, colorIds) =>
+  query.bulkInsert(
     "product_color",
     colorIds.map(id => ({
       product_id: productId,
@@ -58,8 +58,8 @@ const productColorsFactory = queryInterface => (productId, colorIds) =>
 
 const getSku = (product, color, sizeName) => normalizeKey(`${product.key}-${color.key}-${sizeName}`);
 
-const sizesFactory = queryInterface => (product, color, price, sizes) =>
-  queryInterface.bulkInsert(
+const sizesFactory = query => (product, color, price, sizes) =>
+  query.bulkInsert(
     "size",
     sizes.map((s, index) => ({
       sku: getSku(product, color, s),
@@ -72,8 +72,8 @@ const sizesFactory = queryInterface => (product, color, price, sizes) =>
     })),
   );
 
-const imagesFactory = queryInterface => (productId, colorId, images) =>
-  queryInterface.bulkInsert(
+const imagesFactory = query => (productId, colorId, images) =>
+  query.bulkInsert(
     "image",
     images.map(i => ({
       location: i.location,
@@ -83,10 +83,10 @@ const imagesFactory = queryInterface => (productId, colorId, images) =>
     })),
   );
 
-export const productFactory = (queryInterface, models) => (colorIndex, products) => {
-  const createProductColors = productColorsFactory(queryInterface);
-  const createImages = imagesFactory(queryInterface);
-  const createSizes = sizesFactory(queryInterface);
+export const productFactory = (query, models) => (colorIndex, products) => {
+  const createProductColors = productColorsFactory(query);
+  const createImages = imagesFactory(query);
+  const createSizes = sizesFactory(query);
   return Promise.all(
     products.map(async p => {
       const product = await models.Product.create({
