@@ -2,6 +2,7 @@ import Sequelize from "sequelize";
 import fs from "fs";
 import sequelize from "./sequelize";
 import umzug from "./umzug";
+import findByIdOrKey from "./extensions/findByIdOrKey";
 
 let importedModels = {};
 
@@ -24,6 +25,7 @@ Object.keys(models).forEach(key => {
   if (model.associate) {
     model.associate(models);
   }
+  model.findByIdOrKey = findByIdOrKey;
 });
 
 const migrate = () => umzug.up();

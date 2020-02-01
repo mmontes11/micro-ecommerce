@@ -33,6 +33,23 @@ const indexBy = (value, ...fields) => {
   return indexBy(newValue, ...rest);
 };
 
+const isDefined = x => typeof x !== "undefined" && x !== null;
+
+const isEmpty = x => {
+  if (!isDefined(x)) {
+    return true;
+  }
+  if (isDefined(x.length) && x.length === 0) {
+    return true;
+  }
+  if (typeof x === "object" && Object.keys(x).length === 0) {
+    return true;
+  }
+  return false;
+};
+
 module.exports = {
   indexBy,
+  isDefined,
+  isEmpty,
 };
