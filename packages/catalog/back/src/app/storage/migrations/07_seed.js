@@ -1,131 +1,39 @@
 import { indexBy } from "common/data";
 import { models } from "..";
-import { catalogFactory, categoryFactory, colorsFactory, productFactory, getNumericSizes } from "./data.factory";
+import {
+  catalogFactory,
+  categoryFactory,
+  colorsFactory,
+  productFactory,
+  getNumericSizes,
+} from "./helpers/data.factory";
+import { catalogs, getCategories, colors, sizes, getProducts } from "./helpers/data";
 
 module.exports = {
   async up(queryInterface) {
     const createCatalogs = catalogFactory(queryInterface, models);
     const createCategories = categoryFactory(queryInterface, models);
     const createColors = colorsFactory(queryInterface, models);
-    const createProduct = productFactory(queryInterface, models);
+    const createProducts = productFactory(queryInterface, models);
 
-    const [man, woman] = await createCatalogs([
-      {
-        name: "Man",
-      },
-      {
-        name: "Woman",
-      },
-    ]);
+    const [man, woman] = await createCatalogs(catalogs);
+    const catalogObject = { man, woman };
 
-    const [manTshirt, manShoes, womanTrousers] = await createCategories([
-      {
-        name: "T-Shirts",
-        catalog: man,
-      },
-      {
-        name: "Shoes",
-        catalog: man,
-      },
-      {
-        name: "Trousers",
-        catalog: woman,
-      },
-    ]);
+    const categories = getCategories(catalogObject);
+    const [manTshirt, manShoes, womanTrousers, womanJeans] = await createCategories(categories);
+    const categoryObject = { manTshirt, manShoes, womanTrousers, womanJeans };
 
-    const colors = await createColors([
-      {
-        name: "White",
-        imageUrl: "http://color.white.image",
-      },
-      {
-        name: "Black",
-        imageUrl: "http://color.black.image",
-      },
-      {
-        name: "Blue",
-        imageUrl: "http://color.blue.image",
-      },
-    ]);
-    const [white, black, blue] = colors;
-    const colorIndex = indexBy(colors, "id");
+    const createdColors = await createColors(colors);
+    const [white, black, blue] = createdColors;
+    const colorIndex = indexBy(createdColors, "id");
+    const colorObject = { white, black, blue };
 
-    const sizes = ["XS", "S", "M", "L", "XL"];
     const shoeSizes = getNumericSizes(35, 45, 1);
     const trouserSizes = getNumericSizes(30, 60, 2);
+    const sizeObject = { sizes, shoeSizes, trouserSizes };
 
-    const products = [
-      {
-        name: "T-Shirt",
-        brand: "Hollister",
-        category: manTshirt,
-        colors: {
-          [white.id]: {
-            images: [
-              {
-                location: "grid",
-                url: "http://grid.white.image",
-              },
-            ],
-            sizes: {
-              names: sizes,
-              price: 2000,
-            },
-          },
-          [black.id]: {
-            images: [
-              {
-                location: "grid",
-                url: "http://grid.black.image",
-              },
-            ],
-            sizes: {
-              names: sizes,
-              price: 1000,
-            },
-          },
-        },
-      },
-      {
-        name: "Sneakers",
-        brand: "Adidas",
-        category: manShoes,
-        colors: {
-          [white.id]: {
-            images: [
-              {
-                location: "grid",
-                url: "http://grid.white.image",
-              },
-            ],
-            sizes: {
-              names: shoeSizes,
-              price: 3000,
-            },
-          },
-        },
-      },
-      {
-        name: "Trousers",
-        brand: "Prada",
-        category: womanTrousers,
-        colors: {
-          [blue.id]: {
-            images: [
-              {
-                location: "grid",
-                url: "http://grid.white.image",
-              },
-            ],
-            sizes: {
-              names: trouserSizes,
-              price: 8000,
-            },
-          },
-        },
-      },
-    ];
-    await createProduct(colorIndex, products);
+    const products = getProducts(categoryObject, colorObject, sizeObject);
+    await createProducts(colorIndex, products);
   },
   async down() {
     const promises = [...Object.values(models)].map(m => m.destroy({ where: {}, force: true }));

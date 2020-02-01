@@ -96,7 +96,6 @@ export const productFactory = (queryInterface, models) => (colorIndex, products)
         categoryId: p.category.id,
       });
       const colorIds = Object.keys(p.colors);
-      await createProductColors(product.id, colorIds);
       const promises = colorIds.map(id => {
         const {
           sizes: { price, names: sizeNames },
@@ -105,7 +104,7 @@ export const productFactory = (queryInterface, models) => (colorIndex, products)
         const [color] = colorIndex[id];
         return Promise.all([createSizes(product, color, price, sizeNames), createImages(product.id, id, images)]);
       });
-      await Promise.all(promises);
+      await Promise.all([createProductColors(product.id, colorIds), ...promises]);
       return product;
     }),
   );
