@@ -3,7 +3,7 @@ services:
   catalog_db:
     container_name: me_catalog_db_dev
     image: mariadb
-    env_file: .env.dev
+    env_file: .env
     environment:
       MYSQL_ROOT_PASSWORD: ${BACK_CATALOG_DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${BACK_CATALOG_DB_NAME}

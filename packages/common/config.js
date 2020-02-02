@@ -1,28 +1,15 @@
 const dotenv = require("dotenv");
 const path = require("path");
+const { isDefined, mapObjectValues } = require("./data");
 
-let config;
+let config = {};
+const dotenvConfig = dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
-if (process.env.NODE_ENV === "development") {
-  config = dotenv.config({ path: path.resolve(__dirname, "../../.env.dev") });
-}
-if (process.env.NODE_ENV === "production") {
-  config = dotenv.config({ path: path.resolve(__dirname, "../../.env") });
-}
-
-if (!config) {
-  throw new Error(`Error reading configuration. NODE_ENV = ${process.env.NODE_ENV}`);
+if (isDefined(dotenvConfig) && isDefined(dotenvConfig.parsed)) {
+  const shouldMap = value => typeof value !== "object";
+  const mapFn = value => JSON.stringify(value);
+  const stringifiedConfig = mapObjectValues(dotenvConfig.parsed, shouldMap, mapFn);
+  config = stringifiedConfig;
 }
 
-const { error, parsed } = config;
-
-if (error) {
-  throw error;
-}
-
-const stringifiedConfig = Object.keys(parsed).reduce(
-  (acc, key) => ({ ...acc, [key]: JSON.stringify(parsed[key]) }),
-  {},
-);
-
-module.exports = stringifiedConfig;
+module.exports = config;
