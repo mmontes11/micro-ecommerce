@@ -1,7 +1,11 @@
 import { UserInputError } from "apollo-server";
 import { isDefined, isEmpty } from "common/data";
+import { combineResolvers } from "graphql-resolvers";
+import getMandatoryArgsResolver from "./args";
 
-const categories = async (parent, args, context) => {
+const mandatoryArgsResolver = getMandatoryArgsResolver(["catalogId", "catalogKey"]);
+
+const categories = combineResolvers(mandatoryArgsResolver, async (parent, args, context) => {
   const { catalogId, catalogKey } = args;
   const {
     storage: {
@@ -9,25 +13,20 @@ const categories = async (parent, args, context) => {
     },
   } = context;
   const idOrKey = catalogId || catalogKey;
-  let opts = {};
-  if (isDefined(idOrKey)) {
-    const catalog = await Catalog.findByIdOrKey(idOrKey);
-    if (!isDefined(catalog)) {
-      throw new UserInputError("Catalog not found");
-    }
-    opts = {
-      ...opts,
-      where: {
-        catalogId: catalog.id,
-      },
-    };
+  const catalog = await Catalog.findByIdOrKey(idOrKey);
+  if (!isDefined(catalog)) {
+    throw new UserInputError("Catalog not found");
   }
-  const result = await Category.findAll(opts);
+  const result = await Category.findAll({
+    where: {
+      catalogId: catalog.id,
+    },
+  });
   if (isEmpty(result)) {
     throw new UserInputError("Categories not found");
   }
   return result;
-};
+});
 
 export default {
   Query: {
