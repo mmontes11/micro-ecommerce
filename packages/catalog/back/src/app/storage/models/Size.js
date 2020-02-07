@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) =>
       allowNull: false,
       validate: { notEmpty: true },
     },
-    price: {
+    priceCents: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    currency: {
+    priceCurrency: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: { notEmpty: true },
@@ -24,5 +24,21 @@ module.exports = (sequelize, DataTypes) =>
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: { notEmpty: true },
+    },
+    productId: {
+      type: DataTypes.INTEGER,
+      references: {
+        key: "id",
+        model: "product",
+      },
+      allowNull: true,
+    },
+    colorId: {
+      type: DataTypes.INTEGER,
+      references: {
+        key: "id",
+        model: "color",
+      },
+      allowNull: true,
     },
   });

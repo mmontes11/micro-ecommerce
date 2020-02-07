@@ -64,8 +64,8 @@ const sizesFactory = query => (product, color, price, sizes) =>
     sizes.map((s, index) => ({
       sku: getSku(product, color, s),
       name: s,
-      price,
-      currency: "eur",
+      price_cents: price,
+      price_currency: "eur",
       order: index,
       product_id: product.id,
       color_id: color.id,
