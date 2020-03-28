@@ -2,6 +2,7 @@
   "extends": ["mmontes11-node", "mmontes11-react"],
   "settings": {
     "import/resolver": {
+      "node": {},
       "webpack": {
         "config": "webpack.app.dev.js",
         "extensions": [".js", ".jsx"]

@@ -7,8 +7,8 @@ import findByIdOrKey from "./extensions/findByIdOrKey";
 let importedModels = {};
 
 fs.readdirSync(`${__dirname}/models`)
-  .filter(file => file.endsWith(".js"))
-  .forEach(file => {
+  .filter((file) => file.endsWith(".js"))
+  .forEach((file) => {
     const [modelName] = file.split(".");
     const createModel = require(`./models/${modelName}`);
     const model = createModel(sequelize, Sequelize);
@@ -20,7 +20,7 @@ fs.readdirSync(`${__dirname}/models`)
 
 const models = importedModels;
 
-Object.keys(models).forEach(key => {
+Object.keys(models).forEach((key) => {
   const model = models[key];
   if (model.associate) {
     model.associate(models);

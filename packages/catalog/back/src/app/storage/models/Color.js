@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: { notEmpty: true },
     },
   });
-  Color.associate = models => {
+  Color.associate = (models) => {
     Color.belongsToMany(models.Product, { through: "product_color", as: "products" });
   };
   return Color;

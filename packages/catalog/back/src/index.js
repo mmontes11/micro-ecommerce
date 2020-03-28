@@ -11,12 +11,12 @@ const dbPort = process.env.BACK_CATALOG_DB_PORT;
 const server = new Server(app);
 const { sequelize, migrate } = storage;
 
-server.listen(serverPort, err => {
+server.listen(serverPort, (err) => {
   if (!err) {
     logger.info(`Server listening on port ${serverPort}`);
   }
 });
-server.on("error", err => {
+server.on("error", (err) => {
   logger.error("Error in server:");
   logger.error(err);
 });
@@ -30,7 +30,7 @@ sequelize
     logger.info(`Connected to ${dbDialect} database ${dbDialect === "sqlite" ? "" : `on port ${dbPort}`}`);
     migrate();
   })
-  .catch(err => {
+  .catch((err) => {
     logger.error("Error in database");
     logger.error(err);
   });

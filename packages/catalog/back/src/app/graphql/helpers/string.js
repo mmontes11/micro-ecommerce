@@ -1,1 +1,1 @@
-export const parseList = str => str.split(",");
+export const parseList = (str) => str.split(",");

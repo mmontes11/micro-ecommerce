@@ -7,7 +7,7 @@ export const catalogs = [
   },
 ];
 
-export const getCategories = catalogObject => {
+export const getCategories = (catalogObject) => {
   const { woman, man } = catalogObject;
   return [
     {

@@ -6,12 +6,12 @@ import logger from "shared/log";
 const PORT = process.env.FRONT_CATALOG_PORT;
 const server = new Server(app);
 
-server.listen(PORT, err => {
+server.listen(PORT, (err) => {
   if (!err) {
     logger.info(`Server listening on port ${PORT}`);
   }
 });
-server.on("error", err => {
+server.on("error", (err) => {
   logger.error("Error in server:");
   logger.error(err);
 });

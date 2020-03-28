@@ -3,7 +3,7 @@ import logger from "../../helpers/log";
 
 let opts = {
   dialect: process.env.BACK_CATALOG_DB_DIALECT,
-  logging: msg => logger.info(msg),
+  logging: (msg) => logger.info(msg),
   define: {
     timestamps: false,
     underscored: true,

@@ -20,7 +20,7 @@ const resolver = combineResolvers(mandatoryArgsResolver, async (parent, args, co
   const results = await paginators.products(storage, filter, cursor, limit);
   const { edges, pageInfo, totalCount } = results;
 
-  const productsPromises = edges.map(async productFromDB => {
+  const productsPromises = edges.map(async (productFromDB) => {
     const { id: productId, imageIds, colorIds, ...restProduct } = productFromDB;
 
     const imagesQuery = Image.findAll({ where: { id: parseList(imageIds) }, order: [["location", "ASC"]] });
@@ -28,12 +28,12 @@ const resolver = combineResolvers(mandatoryArgsResolver, async (parent, args, co
     const [imagesFromDB, colorsFromDB] = await Promise.all([imagesQuery, colorsQuery]);
 
     const colorImageIndex = indexBy(imagesFromDB, "colorId");
-    const colorPromises = colorsFromDB.map(async colorFromDB => {
+    const colorPromises = colorsFromDB.map(async (colorFromDB) => {
       const { id: colorId, ...restColor } = colorFromDB.toJSON();
       const images = colorImageIndex[colorId];
 
       const sizesFromDB = await Size.findAll({ where: { productId, colorId }, order: [["order", "ASC"]] });
-      const sizes = sizesFromDB.map(sizeFromDB => {
+      const sizes = sizesFromDB.map((sizeFromDB) => {
         const { priceCents: cents, priceCurrency: currency, ...restSize } = sizeFromDB.toJSON();
         return {
           price: {

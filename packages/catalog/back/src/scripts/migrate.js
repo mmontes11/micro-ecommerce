@@ -50,7 +50,7 @@ executedCmd
     logger.info(`'${cmd}' ✅`);
     process.exit(0);
   })
-  .catch(err => {
+  .catch((err) => {
     logger.error(`'${cmd}' ❌`);
     throw err;
   });

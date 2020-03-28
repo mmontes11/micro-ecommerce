@@ -1,10 +1,10 @@
 import slufigy from "slugify";
 
-const normalizeKey = key => slufigy(key, { lower: true });
+const normalizeKey = (key) => slufigy(key, { lower: true });
 
-export const catalogFactory = (query, models) => catalogs =>
+export const catalogFactory = (query, models) => (catalogs) =>
   Promise.all(
-    catalogs.map(c =>
+    catalogs.map((c) =>
       models.Catalog.create({
         key: normalizeKey(c.name),
         name: c.name,
@@ -12,9 +12,9 @@ export const catalogFactory = (query, models) => catalogs =>
     ),
   );
 
-export const categoryFactory = (query, models) => categories =>
+export const categoryFactory = (query, models) => (categories) =>
   Promise.all(
-    categories.map(c =>
+    categories.map((c) =>
       models.Category.create({
         key: normalizeKey(`${c.catalog.key}-${c.name}`),
         name: c.name,
@@ -23,10 +23,10 @@ export const categoryFactory = (query, models) => categories =>
     ),
   );
 
-export const colorsFactory = (query, models) => async colors => {
+export const colorsFactory = (query, models) => async (colors) => {
   let imageUrlIndex = {};
   const createdColors = await Promise.all(
-    colors.map(async c => {
+    colors.map(async (c) => {
       const createdColor = await models.Color.create({
         key: normalizeKey(c.name),
         name: c.name,
@@ -38,7 +38,7 @@ export const colorsFactory = (query, models) => async colors => {
       return createdColor;
     }),
   );
-  const colorImageRows = createdColors.map(c => ({
+  const colorImageRows = createdColors.map((c) => ({
     location: "color",
     url: imageUrlIndex[c.key],
     color_id: c.id,
@@ -47,10 +47,10 @@ export const colorsFactory = (query, models) => async colors => {
   return createdColors;
 };
 
-const productColorsFactory = query => (productId, colorIds) =>
+const productColorsFactory = (query) => (productId, colorIds) =>
   query.bulkInsert(
     "product_color",
-    colorIds.map(id => ({
+    colorIds.map((id) => ({
       product_id: productId,
       color_id: id,
     })),
@@ -58,7 +58,7 @@ const productColorsFactory = query => (productId, colorIds) =>
 
 const getSku = (product, color, sizeName) => normalizeKey(`${product.key}-${color.key}-${sizeName}`);
 
-const sizesFactory = query => (product, color, price, sizes) =>
+const sizesFactory = (query) => (product, color, price, sizes) =>
   query.bulkInsert(
     "size",
     sizes.map((s, index) => ({
@@ -72,10 +72,10 @@ const sizesFactory = query => (product, color, price, sizes) =>
     })),
   );
 
-const imagesFactory = query => (productId, colorId, images) =>
+const imagesFactory = (query) => (productId, colorId, images) =>
   query.bulkInsert(
     "image",
-    images.map(i => ({
+    images.map((i) => ({
       location: i.location,
       url: i.url,
       product_id: productId,
@@ -88,7 +88,7 @@ export const productFactory = (query, models) => (colorIndex, products) => {
   const createImages = imagesFactory(query);
   const createSizes = sizesFactory(query);
   return Promise.all(
-    products.map(async p => {
+    products.map(async (p) => {
       const product = await models.Product.create({
         key: normalizeKey(`${p.category.key}-${p.brand}-${p.name}`),
         name: p.name,
@@ -96,7 +96,7 @@ export const productFactory = (query, models) => (colorIndex, products) => {
         categoryId: p.category.id,
       });
       const colorIds = Object.keys(p.colors);
-      const promises = colorIds.map(id => {
+      const promises = colorIds.map((id) => {
         const {
           sizes: { price, names: sizeNames },
           images,

@@ -42,8 +42,8 @@
     "@babel/preset-react": "^7.7.0",
     "babel-loader": "^8.0.6",
     "cross-env": "^6.0.3",
-    "eslint-config-mmontes11-node": "^1.0.5",
-    "eslint-config-mmontes11-react": "^1.1.0",
+    "eslint-config-mmontes11-node": "^2.0.0",
+    "eslint-config-mmontes11-react": "^2.0.0",
     "nodemon": "^2.0.2",
     "npm-run-all": "^4.1.5",
     "webpack-cli": "^3.3.10"

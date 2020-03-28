@@ -24,7 +24,7 @@ const routes = [
   serverErrorRoute,
 ];
 
-export const matchRoute = pathname => {
+export const matchRoute = (pathname) => {
   for (const r of routes) {
     const matchedRoute = matchPath(pathname, r);
     if (!matchedRoute) {
@@ -50,7 +50,7 @@ export const matchRoute = pathname => {
   return null;
 };
 
-export const isErrorRoute = route => {
+export const isErrorRoute = (route) => {
   const errorRoutes = [notFoundRoute, serverErrorRoute];
-  return errorRoutes.some(er => er.path === route.path);
+  return errorRoutes.some((er) => er.path === route.path);
 };

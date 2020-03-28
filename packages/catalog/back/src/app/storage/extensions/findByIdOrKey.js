@@ -2,7 +2,7 @@ import Sequelize from "sequelize";
 
 const { or } = Sequelize.Op;
 
-export default function(idOrKey) {
+export default function (idOrKey) {
   return this.findOne({
     where: {
       [or]: {

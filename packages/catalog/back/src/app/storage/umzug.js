@@ -13,12 +13,12 @@ const umzug = new Umzug({
     path: path.resolve(__dirname, "migrations"),
     pattern: /^\d+[\w-]+\.js$/,
   },
-  logging: msg => logger.info(msg),
+  logging: (msg) => logger.info(msg),
 });
 
-const logUmzugEvent = eventName => name => logger.info(`${name} ${eventName}`);
+const logUmzugEvent = (eventName) => (name) => logger.info(`${name} ${eventName}`);
 
 const events = ["migrating", "migrated", "reverting", "reverted"];
-events.forEach(e => umzug.on(e, logUmzugEvent(e)));
+events.forEach((e) => umzug.on(e, logUmzugEvent(e)));
 
 export default umzug;

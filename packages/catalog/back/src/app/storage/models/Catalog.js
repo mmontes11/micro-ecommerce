@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: { notEmpty: true },
     },
   });
-  Catalog.associate = models => {
+  Catalog.associate = (models) => {
     Catalog.hasMany(models.Category);
   };
   return Catalog;

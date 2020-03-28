@@ -37,7 +37,7 @@
     "@babel/core": "^7.7.7",
     "@babel/node": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
-    "eslint-config-mmontes11-node": "^1.0.5",
+    "eslint-config-mmontes11-node": "^2.0.0",
     "nodemon": "^2.0.2"
   }
 }

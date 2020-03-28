@@ -4,7 +4,7 @@ import { getHtmlContent } from "server/helpers/request";
 import { render } from "server/helpers/ssr";
 import logger from "shared/log";
 
-const getContent = async route => {
+const getContent = async (route) => {
   if (isErrorRoute(route)) {
     return null;
   }

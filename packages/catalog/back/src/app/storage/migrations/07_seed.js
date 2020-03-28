@@ -38,7 +38,7 @@ module.exports = {
     await createProducts(colorIndex, products);
   },
   async down() {
-    const promises = [...Object.values(models)].map(m => m.destroy({ where: {}, force: true }));
+    const promises = [...Object.values(models)].map((m) => m.destroy({ where: {}, force: true }));
     await Promise.all(promises);
   },
 };

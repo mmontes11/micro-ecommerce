@@ -1,4 +1,4 @@
-export const getHtmlContent = async url => {
+export const getHtmlContent = async (url) => {
   const res = await fetch(url);
   if (res.status >= 400) {
     throw {
