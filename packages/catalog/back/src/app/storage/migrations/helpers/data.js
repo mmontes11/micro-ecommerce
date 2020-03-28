@@ -126,6 +126,100 @@ export const getProducts = (categoryObject, colorObject, sizeObject) => {
       },
     },
     {
+      name: "Sneakers",
+      brand: "Nike",
+      category: manShoes,
+      colors: {
+        [black.id]: {
+          images: [
+            {
+              location: "grid",
+              url: "http://grid.black.image",
+            },
+            {
+              location: "grid-detail",
+              url: "http://grid-detail.black.image",
+            },
+            {
+              location: "detail",
+              url: "http://detail.black.image",
+            },
+          ],
+          sizes: {
+            names: shoeSizes,
+            price: 3500,
+          },
+        },
+      },
+    },
+    {
+      name: "Sneakers",
+      brand: "Vans",
+      category: manShoes,
+      colors: {
+        [blue.id]: {
+          images: [
+            {
+              location: "grid",
+              url: "http://grid.blue.image",
+            },
+            {
+              location: "grid-detail",
+              url: "http://grid-detail.blue.image",
+            },
+            {
+              location: "detail",
+              url: "http://detail.blue.image",
+            },
+          ],
+          sizes: {
+            names: shoeSizes,
+            price: 3500,
+          },
+        },
+        [white.id]: {
+          images: [
+            {
+              location: "grid",
+              url: "http://grid.white.image",
+            },
+            {
+              location: "grid-detail",
+              url: "http://grid-detail.white.image",
+            },
+            {
+              location: "detail",
+              url: "http://detail.white.image",
+            },
+          ],
+          sizes: {
+            names: shoeSizes,
+            price: 3500,
+          },
+        },
+        [black.id]: {
+          images: [
+            {
+              location: "grid",
+              url: "http://grid.black.image",
+            },
+            {
+              location: "grid-detail",
+              url: "http://grid-detail.black.image",
+            },
+            {
+              location: "detail",
+              url: "http://detail.black.image",
+            },
+          ],
+          sizes: {
+            names: shoeSizes,
+            price: 3500,
+          },
+        },
+      },
+    },
+    {
       name: "Trousers",
       brand: "Prada",
       category: womanTrousers,

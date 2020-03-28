@@ -18,11 +18,11 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      price: {
+      price_cents: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      currency: {
+      price_currency: {
         type: DataTypes.STRING,
         allowNull: false,
       },

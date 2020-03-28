@@ -10,4 +10,20 @@ module.exports = (sequelize, DataTypes) =>
       allowNull: false,
       validate: { isUrl: true },
     },
+    productId: {
+      type: DataTypes.INTEGER,
+      references: {
+        key: "id",
+        model: "product",
+      },
+      allowNull: true,
+    },
+    colorId: {
+      type: DataTypes.INTEGER,
+      references: {
+        key: "id",
+        model: "color",
+      },
+      allowNull: true,
+    },
   });
