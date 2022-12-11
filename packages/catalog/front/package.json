@@ -22,7 +22,7 @@
   "dependencies": {
     "common": "^0.1.0",
     "compression-webpack-plugin": "^3.0.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-winston": "^4.0.2",
     "http-status": "^1.4.2",
     "prop-types": "^15.7.2",
